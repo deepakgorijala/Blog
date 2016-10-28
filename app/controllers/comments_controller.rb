@@ -11,21 +11,15 @@ class CommentsController < ApplicationController
   # GET /comments/1
   # GET /comments/1.json
   def show
-    @post = Post.find(params[:post_id])
-    @comment = @post.comments.find(params[:id])
   end
 
   # GET /comments/new
   def new
-    @post = Post.find(params[:post_id])
-    # @comment = Comment.new
-    @comment = @post.comments.build
+    @comment = Comment.new
   end
 
   # GET /comments/1/edit
   def edit
-    @post = Post.find(params[:post_id])
-    @comment = @post.comments.find(params[:id])
   end
 
   # POST /comments
@@ -33,8 +27,7 @@ class CommentsController < ApplicationController
   def create
     # @comment = Comment.new(comment_params)
     @post = Post.find(params[:post_id])
-    # @comment = @post.comments.create(comment_params)
-     @comment = @post.comments.create(comment_params)
+    @comment = @post.comments.create(comment_params)
 
     respond_to do |format|
       if @comment.save
@@ -51,8 +44,6 @@ class CommentsController < ApplicationController
   # PATCH/PUT /comments/1
   # PATCH/PUT /comments/1.json
   def update
-    @post = Post.find(params[:post_id])
-   @comment = @post.comments.find(params[:id])
     respond_to do |format|
       if @comment.update(comment_params)
         format.html { redirect_to @comment, notice: 'Comment was successfully updated.' }
@@ -67,8 +58,6 @@ class CommentsController < ApplicationController
   # DELETE /comments/1
   # DELETE /comments/1.json
   def destroy
-    @post = Post.find(params[:post_id])
-     @comment = @post.comments.find(params[:id])
     @comment.destroy
     respond_to do |format|
       format.html { redirect_to comments_url, notice: 'Comment was successfully destroyed.' }
@@ -79,8 +68,7 @@ class CommentsController < ApplicationController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_comment
-      # @comment = @post.comments.find(params[:id])
-       @comment = Comment.find(params[:id])
+      @comment = @post.comments.find(params[:id])
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.
