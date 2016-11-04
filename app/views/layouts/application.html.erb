@@ -1,7 +1,11 @@
 <!DOCTYPE html>
 <html>
   <head>
+
     <title>Blog Application</title>
+
+    <title>Blog App</title>
+
     <%= csrf_meta_tags %>
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
@@ -10,10 +14,14 @@
   <body>
     <%= render 'layouts/shared/navbar' %>
 
+
     <section class="app-cont">
     <%= yield %>
   </section>
 
   <%= render "layouts/shared/footer" %>
+
+    <%= yield %>
+
   </body>
 </html>
