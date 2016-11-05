@@ -12,9 +12,14 @@
     <p class="notice"><%= notice %></p>
     <p class="alert"><%= alert %></p>
     <section class="app-cont">
+      <% if user_signed_in? %>
       <%= link_to "Sign Up", new_user_registration_path %>
-      <%= link_to "Sign In", new_user_session_path %>
-    <%= yield %>
+      <%= link_to "log_out", destroy_user_session_path, method: :delete  %>
+      <% else %>
+      <%= link_to "Sign Up", new_user_registration_path %>
+      <%= link_to "Sign_in", new_user_session_path %>
+      <% end %>
+     <%= yield %>
     </section>
   <%= render "layouts/shared/footer" %>
   </body>
